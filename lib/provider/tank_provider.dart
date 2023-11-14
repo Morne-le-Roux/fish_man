@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import '../models/tank.dart';
 
-class TanksProvider extends ChangeNotifier {
+class TankProvider extends ChangeNotifier {
   final List<Tank> _tanks = [];
 
 //getter for list of tanks currently added
