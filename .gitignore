@@ -1,4 +1,5 @@
 ./fvm/sdk
+/lib/data/supabase_settings.dart
 
 # Miscellaneous
 *.class
