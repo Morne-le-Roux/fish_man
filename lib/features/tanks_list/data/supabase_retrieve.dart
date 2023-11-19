@@ -1,10 +1,10 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseRetrieve {
-  final _supabase = Supabase.instance.client;
+  final supabase = Supabase.instance.client;
 
   getListOfTanks() async {
-    final data = _supabase.from("tankDatabase").select();
+    final data = await supabase.from("tankDatabase").select();
     return data;
   }
 }
