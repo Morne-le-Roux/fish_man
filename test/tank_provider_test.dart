@@ -12,7 +12,7 @@ void main() {
         tanksProvider.addTank(
             id: 23, tankName: "TestTank", tankSize: 15, occupants: ["fish"]);
         //Assert
-        expect(tanksProvider.tanks.isNotEmpty, true);
+        expect(tanksProvider.listOfTanks.isNotEmpty, true);
       },
     );
   });
