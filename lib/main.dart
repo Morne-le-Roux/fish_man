@@ -1,4 +1,4 @@
-import 'package:fish_man/presentation/home_screen.dart';
+import 'package:fish_man/features/tanks_list/presentation/screens/tanks_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import './core/supabase_settings.dart';
