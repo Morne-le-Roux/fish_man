@@ -1,9 +1,10 @@
+import 'package:fish_man/features/tanks_list/data/supabase_retrieve.dart';
 import 'package:flutter/cupertino.dart';
 import '../models/tank.dart';
 
 class TankProvider extends ChangeNotifier {
 //List of tanks
-  final List<Tank> _listOfTanks = [];
+  final List<Tank> _listOfTanks = SupabaseRetrieve().getListOfTanks();
 
 //getter for list of tanks currently added
   List<Tank> get listOfTanks => _listOfTanks;
