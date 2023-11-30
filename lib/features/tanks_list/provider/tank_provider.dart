@@ -1,4 +1,4 @@
-import 'package:fish_man/features/tanks_list/data/supabase_retrieve.dart';
+import '../data/tanklist_data.dart';
 import 'package:flutter/cupertino.dart';
 import '../models/tank.dart';
 
@@ -15,8 +15,8 @@ class TankProvider extends ChangeNotifier {
 //get tanks list
 
   getListOfTanks() async {
-    var data = await SupabaseRetrieve().getListOfTanks();
-    print(data);
+    var data = await TanklistData().getListOfTanks();
+
     for (var tank in data) {
       _listOfTanks.add(Tank(
           id: tank["id"],
@@ -28,10 +28,21 @@ class TankProvider extends ChangeNotifier {
   }
 
 //adds a tank to the list
-  addTank(
-      {required id, required tankName, required tankSize, required occupants}) {
+  addTank({
+    required id,
+    required tankName,
+    required tankSize,
+  }) {
     _listOfTanks.add(Tank(
-        id: id, tankName: tankName, tankSize: tankSize, occupants: occupants));
+      id: id,
+      tankName: tankName,
+      tankSize: tankSize,
+    ));
+    try {
+      TanklistData().addTankToDatabase(tankName: tankName, tankSize: tankSize);
+    } catch (e) {
+      print(e);
+    }
     notifyListeners();
   }
 }
