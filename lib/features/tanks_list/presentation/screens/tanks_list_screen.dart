@@ -9,6 +9,15 @@ class TanksListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Fish Man"),
+        actions: const [
+          Icon(Icons.add_rounded), //TODO: Implement add tank function
+          SizedBox(
+            width: 15,
+          )
+        ],
+      ),
       body: ChangeNotifierProvider(
         create: (context) => TankProvider(),
         child: Consumer<TankProvider>(
