@@ -1,3 +1,4 @@
+import 'package:fish_man/core/constants.dart';
 import 'package:fish_man/features/tanks_list/presentation/screens/tanks_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -13,8 +14,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: TanksListScreen(),
+    return MaterialApp(
+      home: const TanksListScreen(),
+      darkTheme: darkTheme,
+      theme: lightTheme,
     );
   }
 }
