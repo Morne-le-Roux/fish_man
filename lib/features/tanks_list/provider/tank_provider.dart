@@ -41,8 +41,8 @@ class TankProvider extends ChangeNotifier {
     try {
       TanklistDatabase()
           .addTankToDatabase(tankName: tankName, tankSize: tankSize);
-    } catch (e) {
-      print(e);
+    } catch (error) {
+      return (error);
     }
     notifyListeners();
   }
