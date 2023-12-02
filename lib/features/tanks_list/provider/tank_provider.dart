@@ -1,4 +1,4 @@
-import '../data/tanklist_data.dart';
+import '../data/tanklist_database.dart';
 import 'package:flutter/cupertino.dart';
 import '../models/tank.dart';
 
@@ -15,7 +15,7 @@ class TankProvider extends ChangeNotifier {
 //get tanks list
 
   getListOfTanks() async {
-    var data = await TanklistData().getListOfTanks();
+    var data = await TanklistDatabase().getListOfTanks();
 
     for (var tank in data) {
       _listOfTanks.add(Tank(
@@ -39,7 +39,8 @@ class TankProvider extends ChangeNotifier {
       tankSize: tankSize,
     ));
     try {
-      TanklistData().addTankToDatabase(tankName: tankName, tankSize: tankSize);
+      TanklistDatabase()
+          .addTankToDatabase(tankName: tankName, tankSize: tankSize);
     } catch (e) {
       print(e);
     }

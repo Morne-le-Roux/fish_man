@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class TanklistData {
+class TanklistDatabase {
   final supabase = Supabase.instance.client;
 
   getListOfTanks() async {
