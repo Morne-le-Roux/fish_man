@@ -1,3 +1,4 @@
+import 'package:fish_man/core/constants.dart';
 import 'package:fish_man/features/tanks_list/presentation/widgets/tank_widget.dart';
 import 'package:fish_man/features/tanks_list/provider/tank_provider.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,10 @@ class TanksListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Fish Man"),
+        title: Text(
+          "Fish Man",
+          style: mainTextStyle,
+        ),
         actions: const [
           Icon(Icons.add_rounded), //TODO: Implement add tank function
           SizedBox(
