@@ -20,6 +20,7 @@ class TankWidget extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           height: 200,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(tank.tankName),
