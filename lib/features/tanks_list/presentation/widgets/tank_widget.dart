@@ -1,3 +1,4 @@
+import 'package:fish_man/core/constants.dart';
 import 'package:fish_man/features/tanks_list/models/tank.dart';
 import "package:flutter/material.dart";
 
@@ -23,8 +24,14 @@ class TankWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(tank.tankName),
-              Text("${tank.tankSize} Gallon"),
+              Text(
+                tank.tankName,
+                style: mainTextStyle,
+              ),
+              Text(
+                "${tank.tankSize} Gallon",
+                style: secondaryTextStyle,
+              ),
             ],
           ),
         ),
