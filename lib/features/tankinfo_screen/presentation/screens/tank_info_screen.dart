@@ -9,13 +9,20 @@ class TankInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<TankEntriesProvider>(
-        create: (context) => TankEntriesProvider(tankID: tankID),
-        child: Consumer<TankEntriesProvider>(
-            builder: (context, tankEntriesProvider, child) {
-          return ListView.builder(itemBuilder: (context, index) {
-            return Entry(tankEntry: tankEntriesProvider.listOfEntries[index]);
-          });
-        }));
+    return Scaffold(
+      body: SafeArea(
+        child: ChangeNotifierProvider<TankEntriesProvider>(
+            create: (context) => TankEntriesProvider(tankID: tankID),
+            child: Consumer<TankEntriesProvider>(
+                builder: (context, tankEntriesProvider, child) {
+              return ListView(
+                  children: List.generate(
+                      tankEntriesProvider.listOfEntries.length,
+                      (index) => Entry(
+                          tankEntry:
+                              tankEntriesProvider.listOfEntries[index])));
+            })),
+      ),
+    );
   }
 }
