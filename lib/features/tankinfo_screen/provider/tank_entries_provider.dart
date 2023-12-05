@@ -3,13 +3,19 @@ import 'package:fish_man/features/tankinfo_screen/models/tank_entry.dart';
 import 'package:flutter/widgets.dart';
 
 class TankEntriesProvider extends ChangeNotifier {
-  final List<TankEntry> _listOfEntries = [];
+  late final List<TankEntry> _listOfEntries = [];
   final int _tankID;
+  final TankEntriesDatabase _database = TankEntriesDatabase();
 
   TankEntriesProvider({required int tankID}) : _tankID = tankID {
-    var data = TankEntriesDatabase().getListOfTankEntries(_tankID);
+    initTankEntries(tankID);
+  }
+
+  initTankEntries(tankID) async {
+    var data = await _database.getListOfTankEntries(_tankID);
     for (var entry in data) {
       _listOfEntries.add(TankEntry(data: entry));
+      notifyListeners();
     }
   }
 
