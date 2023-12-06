@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class SupabaseAuth {
+class SupabaseAuthM {
   final _supabase = Supabase.instance.client;
 
   void register({required email, required password}) {

@@ -1,7 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class AuthTextBox extends StatelessWidget {
-  const AuthTextBox({
+  AuthTextBox({
     super.key,
     required this.hint,
     required this.controller,
@@ -11,6 +13,7 @@ class AuthTextBox extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
   final IconData icon;
+  bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +22,7 @@ class AuthTextBox extends StatelessWidget {
       decoration: const BoxDecoration(),
       child: TextField(
         controller: controller,
+        obscureText: obscureText == true ? true : false,
         decoration: InputDecoration(
           border: InputBorder.none,
           icon: Icon(icon),
