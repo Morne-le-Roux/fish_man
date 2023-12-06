@@ -15,7 +15,7 @@ class AuthTextBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       decoration: const BoxDecoration(),
       child: TextField(
         controller: controller,
