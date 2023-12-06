@@ -8,6 +8,7 @@ class AuthTextBox extends StatelessWidget {
     required this.hint,
     required this.controller,
     required this.icon,
+    this.obscureText,
   });
 
   final String hint;
