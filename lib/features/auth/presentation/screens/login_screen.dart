@@ -29,6 +29,7 @@ class LoginScreen extends StatelessWidget {
             hint: "Password",
             controller: _passwordController,
             icon: Icons.password,
+            obscureText: true,
           ),
 
           const SizedBox(height: 40),
