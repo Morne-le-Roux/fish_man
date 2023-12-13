@@ -91,6 +91,8 @@ class _AddTankScreenState extends State<AddTankScreen> {
                   onTap: () {
                     Provider.of<TankProvider>(context, listen: false)
                         .addTank(tankName: _tankName.text, tankSize: _tankSize);
+
+                    Navigator.pop(context);
                   },
                 );
               },
