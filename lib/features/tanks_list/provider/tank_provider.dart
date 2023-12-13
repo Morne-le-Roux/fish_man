@@ -29,15 +29,9 @@ class TankProvider extends ChangeNotifier {
 
 //adds a tank to the list
   addTank({
-    required id,
     required tankName,
     required tankSize,
   }) {
-    _listOfTanks.add(Tank(
-      id: id,
-      tankName: tankName,
-      tankSize: tankSize,
-    ));
     try {
       TanklistDatabase()
           .addTankToDatabase(tankName: tankName, tankSize: tankSize);
