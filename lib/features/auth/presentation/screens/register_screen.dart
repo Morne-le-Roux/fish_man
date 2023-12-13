@@ -13,7 +13,7 @@ class RegisterScreen extends StatelessWidget {
   final SupabaseAuthM _supabaseAuthM = SupabaseAuthM();
 
   bool passwordsCheck() {
-    if (_passwordController == "" || _password2Controller.text == "") {
+    if (_passwordController.text == "" || _password2Controller.text == "") {
       return false;
     }
     if (_password2Controller.text == _passwordController.text) {

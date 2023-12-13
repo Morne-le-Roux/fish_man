@@ -38,6 +38,6 @@ class TankProvider extends ChangeNotifier {
     } catch (error) {
       return (error);
     }
-    notifyListeners();
+    getListOfTanks();
   }
 }
