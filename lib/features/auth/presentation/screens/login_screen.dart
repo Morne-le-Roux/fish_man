@@ -7,12 +7,21 @@ import 'package:flutter/material.dart';
 import 'package:fish_man/features/auth/data/supabase_auth_m.dart';
 import '../widgets/auth_text_box.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
+
   final SupabaseAuthM _supabaseAuthM = SupabaseAuthM();
+
+  bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +58,10 @@ class LoginScreen extends StatelessWidget {
           InkWell(
             onTap: () async {
               try {
+                //starts loading animation
+                setState(() {
+                  _loading = true;
+                });
                 //signs in user
                 var response = await _supabaseAuthM.singIn(
                     email: _emailController.text,
@@ -65,16 +78,28 @@ class LoginScreen extends StatelessWidget {
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(e.toString())));
               }
+
+              //stops animation
+              setState(() {
+                _loading = false;
+              });
             },
             //button look
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
                   border: Border.all(width: 1, color: Colors.white),
                   borderRadius: BorderRadius.circular(20)),
               child: const Text("Login"),
             ),
           ),
+
+          Visibility(
+              replacement: const SizedBox(),
+              visible: _loading,
+              child:
+                  const SizedBox(width: 200, child: LinearProgressIndicator())),
 
           //spacing
           const SizedBox(height: 40),
