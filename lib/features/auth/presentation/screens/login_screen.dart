@@ -36,7 +36,13 @@ class LoginScreen extends StatelessWidget {
 
           //Remember Me
 
-          const RememberMe(),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: RememberMe(
+              emailController: _emailController,
+              passwordController: _passwordController,
+            ),
+          ),
 
           //BUTTON
 
