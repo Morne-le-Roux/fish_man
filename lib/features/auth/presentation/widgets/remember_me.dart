@@ -8,7 +8,7 @@ class RememberMe extends StatefulWidget {
 }
 
 class _RememberMeState extends State<RememberMe> {
-  bool? remember;
+  bool? _remember;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,10 @@ class _RememberMeState extends State<RememberMe> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Checkbox(
-              value: remember ?? false,
+              value: _remember ?? false,
               onChanged: (value) {
                 setState(() {
-                  remember = value;
+                  _remember = value;
                 });
               }),
           const Text("Remember Me"),
