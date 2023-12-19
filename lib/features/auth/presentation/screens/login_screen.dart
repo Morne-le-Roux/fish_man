@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:fish_man/features/auth/presentation/screens/register_screen.dart';
+import 'package:fish_man/features/auth/presentation/widgets/remember_me.dart';
 import 'package:fish_man/features/tanks_list/presentation/screens/tanks_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fish_man/features/auth/data/supabase_auth_m.dart';
@@ -18,6 +19,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           AuthTextBox(
@@ -32,7 +34,9 @@ class LoginScreen extends StatelessWidget {
             obscureText: true,
           ),
 
-          const SizedBox(height: 40),
+          //Remember Me
+
+          const RememberMe(),
 
           //BUTTON
 
