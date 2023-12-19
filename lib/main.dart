@@ -1,6 +1,5 @@
 import 'package:fish_man/core/constants.dart';
-import 'package:fish_man/features/auth/presentation/screens/register_screen.dart';
-
+import 'package:fish_man/features/auth/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import './core/supabase_settings.dart';
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: RegisterScreen(),
+      home: LoginScreen(),
       darkTheme: darkTheme,
       theme: lightTheme,
     );
