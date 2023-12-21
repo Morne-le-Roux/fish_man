@@ -30,7 +30,7 @@ class _RememberMeState extends State<RememberMe> {
   void getSharedPrefs() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      widget._remember = prefs.getBool("Remember");
+      widget._remember = prefs.getBool("Remember") ?? false;
       widget.emailController.text = prefs.getString("Email") ?? "";
       widget.passwordController.text = prefs.getString("Password") ?? "";
     });
