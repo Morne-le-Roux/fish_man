@@ -8,4 +8,8 @@ class TankEntriesDatabase {
 
     return data;
   }
+
+  deleteTank(tankID) async {
+    await _supabase.from("tankDatabase").delete().eq("id", tankID);
+  }
 }
