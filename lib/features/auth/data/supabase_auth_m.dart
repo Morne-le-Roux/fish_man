@@ -11,4 +11,8 @@ class SupabaseAuthM {
     return await _supabase.auth
         .signInWithPassword(email: email, password: password);
   }
+
+  User? getCurrentUser() {
+    return _supabase.auth.currentUser;
+  }
 }
