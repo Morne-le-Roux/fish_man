@@ -29,12 +29,13 @@ class TankProvider extends ChangeNotifier {
 
 //adds a tank to the list
   addTank({
+    required owner,
     required tankName,
     required tankSize,
   }) {
     try {
-      TanklistDatabase()
-          .addTankToDatabase(tankName: tankName, tankSize: tankSize);
+      TanklistDatabase().addTankToDatabase(
+          owner: owner, tankName: tankName, tankSize: tankSize);
     } catch (error) {
       return (error);
     }

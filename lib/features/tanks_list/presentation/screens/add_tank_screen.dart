@@ -1,9 +1,10 @@
 import 'package:fish_man/core/constants.dart';
-import 'package:fish_man/features/tanks_list/presentation/widgets/add_tank_text_box.dart';
+import 'package:fish_man/features/auth/provider/current_user.dart';
 import 'package:fish_man/features/tanks_list/provider/tank_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as supa;
 
 // ignore: must_be_immutable
 class AddTankScreen extends StatefulWidget {
@@ -89,8 +90,13 @@ class _AddTankScreenState extends State<AddTankScreen> {
                     ),
                   ),
                   onTap: () {
-                    Provider.of<TankProvider>(context, listen: false)
-                        .addTank(tankName: _tankName.text, tankSize: _tankSize);
+                    supa.User? currentUser =
+                        Provider.of<FishManUser>(context, listen: false)
+                            .currentUser;
+                    Provider.of<TankProvider>(context, listen: false).addTank(
+                        owner: currentUser?.id ?? "",
+                        tankName: _tankName.text,
+                        tankSize: _tankSize);
 
                     Navigator.pop(context);
                   },
