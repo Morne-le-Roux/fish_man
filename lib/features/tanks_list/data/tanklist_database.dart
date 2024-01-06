@@ -11,7 +11,7 @@ class TanklistDatabase {
 
   addTankToDatabase({
     required String tankName,
-    required int tankSize,
+    required String tankSize,
     required String owner,
   }) async {
     await _supabase.from("tankDatabase").insert({

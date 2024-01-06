@@ -1,7 +1,7 @@
 class Tank {
   final int id;
   final String tankName;
-  final int tankSize;
+  final String tankSize;
   List<String>? occupants;
 
   Tank({

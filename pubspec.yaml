@@ -15,6 +15,7 @@ dependencies:
   google_fonts: ^6.1.0
   numberpicker: ^2.1.2
   provider: ^6.1.1
+  selectable_list: ^0.1.1
   shared_preferences: ^2.2.2
   supabase_flutter: ^1.10.25
 
