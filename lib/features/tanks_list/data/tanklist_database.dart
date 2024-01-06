@@ -3,12 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class TanklistDatabase {
   final _supabase = Supabase.instance.client;
 
-  getListOfTanks() async {
-    final data = await _supabase.from("tankDatabase").select();
-    return data;
-  }
-
-  Stream taskStream({required ownerUID}) {
+  Stream tankStream({required ownerUID}) {
     return _supabase
         .from("tankDatabase")
         .stream(primaryKey: ["id"]).eq("owner", ownerUID);

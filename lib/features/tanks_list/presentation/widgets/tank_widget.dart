@@ -1,6 +1,6 @@
 import 'package:fish_man/core/constants.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/screens/tank_info_screen.dart';
-import 'package:fish_man/features/tanks_list/models/tank.dart';
+import 'package:fish_man/features/tanks_list/domain/models/tank.dart';
 import "package:flutter/material.dart";
 
 class TankWidget extends StatelessWidget {

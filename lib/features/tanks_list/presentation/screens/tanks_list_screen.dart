@@ -1,12 +1,19 @@
 import 'package:fish_man/core/constants.dart';
+import 'package:fish_man/features/tanks_list/domain/models/tank.dart';
+import 'package:fish_man/features/tanks_list/domain/use%20cases/tanks_data.dart';
 import 'package:fish_man/features/tanks_list/presentation/screens/add_tank_screen.dart';
 import 'package:fish_man/features/tanks_list/presentation/widgets/tank_widget.dart';
-import 'package:fish_man/features/tanks_list/provider/tank_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class TanksListScreen extends StatelessWidget {
+class TanksListScreen extends StatefulWidget {
   const TanksListScreen({super.key});
+
+  @override
+  State<TanksListScreen> createState() => _TanksListScreenState();
+}
+
+class _TanksListScreenState extends State<TanksListScreen> {
+  List _listOfTanks = [];
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +42,33 @@ class TanksListScreen extends StatelessWidget {
           )
         ],
       ),
-      body: ChangeNotifierProvider(
-        create: (context) => TankProvider(),
-        child: Consumer<TankProvider>(
-          builder: (context, tankProvider, child) {
-            return ListView.builder(
-              itemCount: tankProvider.listOfTanks.length,
-              itemBuilder: (BuildContext context, int index) {
-                return TankWidget(tank: tankProvider.listOfTanks[index]);
-              },
+      body: StreamBuilder(
+        stream: TanksData().tanksStream(context: context),
+        builder: (context, snapshot) {
+          //clear list of tanks first
+          _listOfTanks = [];
+          //if there is not data yet, show a loading screen
+          //TODO: update to match loading screen theme
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          },
-        ),
+          }
+
+          for (var tank in snapshot.data) {
+            _listOfTanks.add(Tank(
+                id: tank["id"],
+                tankName: tank["tank_name"],
+                tankSize: tank["tank_size"]));
+          }
+
+          return ListView.builder(
+            itemCount: _listOfTanks.length,
+            itemBuilder: (BuildContext context, int index) {
+              return TankWidget(tank: _listOfTanks[index]);
+            },
+          );
+        },
       ),
     );
   }
