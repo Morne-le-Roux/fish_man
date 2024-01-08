@@ -1,4 +1,5 @@
 import 'package:fish_man/features/tankinfo_screen/data/tank_entries_database.dart';
+import 'package:fish_man/features/tankinfo_screen/presentation/screens/new_entry.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/widgets/entry.dart';
 import 'package:fish_man/features/tankinfo_screen/provider/tank_entries_provider.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,10 @@ class TankInfoScreen extends StatelessWidget {
         return Scaffold(
           //Floating Action Button
           floatingActionButton: FloatingActionButton(
-            //TODO: Implement function for button
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const NewEntry()));
+            },
             child: const Icon(Icons.add_rounded),
           ),
 
