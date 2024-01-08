@@ -17,8 +17,10 @@ class TankWidget extends StatelessWidget {
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  TankInfoScreen(tankID: tank.id))), //PUSHES TANK INFO SCREEN
+              builder: (context) => TankInfoScreen(
+                    tankID: tank.id,
+                    tankName: tank.tankName,
+                  ))), //PUSHES TANK INFO SCREEN
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(

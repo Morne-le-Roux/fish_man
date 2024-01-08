@@ -6,7 +6,9 @@ import 'package:provider/provider.dart';
 
 class TankInfoScreen extends StatelessWidget {
   final int tankID;
-  const TankInfoScreen({super.key, required this.tankID});
+  final String tankName;
+  const TankInfoScreen(
+      {super.key, required this.tankID, required this.tankName});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +17,12 @@ class TankInfoScreen extends StatelessWidget {
       child: Consumer<TankEntriesProvider>(
           builder: (context, tankEntriesProvider, child) {
         return Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+            child: const Icon(Icons.add_rounded),
+          ),
           appBar: AppBar(
-            title: const Text("Tank Name"),
+            title: Text(tankName),
             actions: [
               //delete tank button
               InkWell(
