@@ -17,14 +17,19 @@ class TankInfoScreen extends StatelessWidget {
       child: Consumer<TankEntriesProvider>(
           builder: (context, tankEntriesProvider, child) {
         return Scaffold(
+          //Floating Action Button
           floatingActionButton: FloatingActionButton(
+            //TODO: Implement function for button
             onPressed: () {},
             child: const Icon(Icons.add_rounded),
           ),
+
+          //appBar
           appBar: AppBar(
             title: Text(tankName),
             actions: [
               //delete tank button
+              //TODO: Change this to a burger menu
               InkWell(
                 onTap: () {
                   TankEntriesDatabase().deleteTank(tankID);
