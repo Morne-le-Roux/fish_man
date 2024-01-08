@@ -5,6 +5,11 @@ class NewEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        //TODO: Add tank name to appBar.
+        title: const Text("New Entry for 'Tank Name'"),
+      ),
+    );
   }
 }
