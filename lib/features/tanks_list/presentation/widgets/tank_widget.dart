@@ -36,7 +36,7 @@ class TankWidget extends StatelessWidget {
                   style: mainTextStyle,
                 ),
                 Text(
-                  "${tank.tankSize}",
+                  tank.tankSize,
                   style: secondaryTextStyle,
                 ),
               ],

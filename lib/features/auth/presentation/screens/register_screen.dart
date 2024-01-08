@@ -61,8 +61,10 @@ class RegisterScreen extends StatelessWidget {
 
                   if (response.user != null) {
                     // ignore: use_build_context_synchronously
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
                   }
                 } catch (e) {
                   // ignore: use_build_context_synchronously
@@ -88,7 +90,7 @@ class RegisterScreen extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()));
+                  MaterialPageRoute(builder: (context) => const LoginScreen()));
             },
             child: const Text("Login Instead",
                 style: TextStyle(fontStyle: FontStyle.italic)),
