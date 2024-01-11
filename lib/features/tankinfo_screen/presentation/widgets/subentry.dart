@@ -9,20 +9,21 @@ class Subentry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.all(3),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         border: Border.all(
-          width: 1,
-          color: Colors.white,
-        ),
-        borderRadius: BorderRadius.circular(8),
+            color: Colors.white), //TODO: Should change to black in light mode
+        borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ListTile(
-            title: Text(shortName),
-            subtitle: Text("The amount of $fullName in your tank."),
+          Text(
+            shortName,
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
+          Text("The amount of $fullName in your tank."),
         ],
       ),
     );

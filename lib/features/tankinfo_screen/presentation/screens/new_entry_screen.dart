@@ -1,11 +1,18 @@
+import 'package:fish_man/features/tankinfo_screen/presentation/widgets/note_entry.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/widgets/subentry.dart';
+import 'package:fish_man/features/tankinfo_screen/provider/sub_entries_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:selectable_list/selectable_list.dart';
+import 'package:provider/provider.dart';
 
-class NewEntryScreen extends StatelessWidget {
-  NewEntryScreen({super.key});
+class NewEntryScreen extends StatefulWidget {
+  const NewEntryScreen({super.key});
 
-  final List<Widget> _entryList = [
+  @override
+  State<NewEntryScreen> createState() => _NewEntryScreenState();
+}
+
+class _NewEntryScreenState extends State<NewEntryScreen> {
+  final List<Widget> _availableSubEntries = [
     const Subentry(shortName: "pH", fullName: "pH"),
     const Subentry(shortName: "Ammonia", fullName: "Ammonia"),
     const Subentry(shortName: "Nitrite", fullName: "Nitrite"),
@@ -15,78 +22,52 @@ class NewEntryScreen extends StatelessWidget {
     const Subentry(shortName: "KH", fullName: "Carbonate Hardness"),
   ];
 
-  final List<Widget> _entriesToSend = [];
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        //TODO: Add tank name to appBar.
-        title: const Text("New Entry for 'Tank Name'"),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //subentries
-          ListView(
-            shrinkWrap: true,
-            children: _entriesToSend,
-          ),
-
-          //Add icon to add a subentry
-          GestureDetector(
-            child: const Padding(
-              padding: EdgeInsets.only(left: 10.0, top: 10.0),
-              child: Icon(Icons.add),
+    return Consumer<SubEntriesProvider>(
+      builder: (context, subEntriesProvider, child) => Scaffold(
+        appBar: AppBar(
+          //TODO: Add tank name to appBar.
+          title: const Text("New Entry for 'Tank Name'"),
+        ),
+        body: Column(
+          children: [
+            //subentries
+            ListView(
+              shrinkWrap: true,
+              children: subEntriesProvider.listOfSubEntries,
             ),
-            onTap: () {
-              showModalBottomSheet(
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            //BOTTOM SHEET
+            showModalBottomSheet(
                 context: context,
                 builder: (context) {
-                  return SizedBox(
-                    height: 800, //TODO: This doesnt work.
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: ListView(
-                      children: _entryList,
+                      children: List.generate(
+                        _availableSubEntries.length,
+                        (index) => GestureDetector(
+                          child: _availableSubEntries[index],
+                          onTap: () {
+                            subEntriesProvider.addSubEntry(_availableSubEntries[
+                                index]); //TODO: Does not rebuild list.
+                            Navigator.pop(
+                              context,
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   );
-                },
-              );
-            },
-          )
-        ],
+                });
+          },
+          child: const Icon(Icons.add_chart),
+        ),
       ),
     );
   }
 }
-
-// SelectableList(
-//             items: _entryList,
-//             selectedValue: _currentSelected,
-//             onItemSelected: (value) => setState(
-//               () {
-//                 _entriesToSend.add(value);
-//                 _currentSelected = value;
-//               },
-//             ),
-//             onItemDeselected: (value) => setState(
-//               () {
-//                 _currentSelected = null;
-//               },
-//             ),
-//             itemBuilder: (context, value, selected, onTap) => ListTile(
-//               title: Text(value.fieldName),
-//               subtitle: Text("The amount of ${value.fieldName} in your tank."),
-//               onTap: onTap,
-
-//               //InputField
-//               trailing: Container(
-//                 width: 20,
-//                 decoration: BoxDecoration(
-//                   border: Border.all(width: 3),
-//                 ),
-//                 child: const TextField(
-//                   decoration: InputDecoration(border: InputBorder.none),
-//                 ),
-//               ),
-//             ),
-//           )
