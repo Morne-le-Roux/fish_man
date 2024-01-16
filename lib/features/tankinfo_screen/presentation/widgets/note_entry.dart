@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class NoteEntry extends StatelessWidget {
-  const NoteEntry({super.key});
+  NoteEntry({super.key});
+
+  final TextEditingController _controller = TextEditingController();
+
+  String get value => _controller.text;
 
   @override
   Widget build(BuildContext context) {
@@ -9,18 +13,20 @@ class NoteEntry extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(3),
         padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: const Column(
+        decoration: const BoxDecoration(),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Note",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             TextField(
-              decoration: InputDecoration(border: InputBorder.none),
+              controller: _controller,
+              maxLines: 10,
+              decoration: const InputDecoration(border: InputBorder.none),
+              scrollPadding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
             )
           ],
         ),

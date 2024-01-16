@@ -1,7 +1,6 @@
 import 'package:fish_man/core/constants.dart';
 import 'package:fish_man/features/auth/presentation/screens/login_screen.dart';
 import 'package:fish_man/features/auth/provider/current_user.dart';
-import 'package:fish_man/features/tankinfo_screen/provider/sub_entries_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -13,7 +12,6 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => FishManUser()),
-        ChangeNotifierProvider(create: (context) => SubEntriesProvider()),
       ],
       child: const MyApp(),
     ),

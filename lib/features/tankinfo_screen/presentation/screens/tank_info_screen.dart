@@ -1,7 +1,7 @@
 import 'package:fish_man/features/tankinfo_screen/data/tank_entries_database.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/screens/new_entry_screen.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/widgets/entry.dart';
-import 'package:fish_man/features/tankinfo_screen/provider/sub_entries_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
