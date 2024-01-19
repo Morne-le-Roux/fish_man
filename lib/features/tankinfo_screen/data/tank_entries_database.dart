@@ -9,6 +9,10 @@ class TankEntriesDatabase {
     return data;
   }
 
+  sendTankEntry({required data}) async {
+    await _supabase.from("tankEntries").insert(data);
+  }
+
   deleteTank(tankID) async {
     await _supabase.from("tankDatabase").delete().eq("id", tankID);
   }

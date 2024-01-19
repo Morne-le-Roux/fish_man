@@ -14,17 +14,55 @@ class NewEntryScreen extends StatefulWidget {
 }
 
 class _NewEntryScreenState extends State<NewEntryScreen> {
-  final List<Subentry> _subEntryList = [
-    Subentry(shortName: "pH", fullName: "pH"),
-    Subentry(shortName: "NH4", fullName: "Ammonia"),
-    Subentry(shortName: "NO2", fullName: "Nitrites"),
-    Subentry(shortName: "NO3", fullName: "Nitrates"),
-    Subentry(shortName: "GH", fullName: "General Hardness"),
-    Subentry(shortName: "KH", fullName: "Carbonate Hardness"),
-    Subentry(shortName: "TDS", fullName: "Total Dissolved Solids"),
-  ];
+  //Controllers
+  final TextEditingController _pHController = TextEditingController();
+  final TextEditingController _NH4Controller = TextEditingController();
+  final TextEditingController _NO2Controller = TextEditingController();
+  final TextEditingController _NO3Controller = TextEditingController();
+  final TextEditingController _GHController = TextEditingController();
+  final TextEditingController _KHController = TextEditingController();
+  final TextEditingController _TDSController = TextEditingController();
+  final TextEditingController _noteController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final List<Subentry> subEntryList = [
+      Subentry(
+        shortName: "pH",
+        fullName: "pH",
+        controller: _pHController,
+      ),
+      Subentry(
+        shortName: "NH4",
+        fullName: "Ammonia",
+        controller: _NH4Controller,
+      ),
+      Subentry(
+        shortName: "NO2",
+        fullName: "Nitrites",
+        controller: _NO2Controller,
+      ),
+      Subentry(
+        shortName: "NO3",
+        fullName: "Nitrates",
+        controller: _NO3Controller,
+      ),
+      Subentry(
+        shortName: "GH",
+        fullName: "General Hardness",
+        controller: _GHController,
+      ),
+      Subentry(
+        shortName: "KH",
+        fullName: "Carbonate Hardness",
+        controller: _KHController,
+      ),
+      Subentry(
+        shortName: "TDS",
+        fullName: "Total Dissolved Solids",
+        controller: _TDSController,
+      ),
+    ];
     return Scaffold(
       //on finish
       floatingActionButton: FloatingActionButton(
@@ -32,12 +70,6 @@ class _NewEntryScreenState extends State<NewEntryScreen> {
           onPressed: () {
             Map data = {};
 
-            //TODO: Fix this. Everything returns null.
-            for (var entry in _subEntryList) {
-              if (entry.value != "") {
-                data.addAll({entry.shortName: entry.value});
-              }
-            }
             print(data);
           }),
       appBar: AppBar(
@@ -51,8 +83,10 @@ class _NewEntryScreenState extends State<NewEntryScreen> {
             ListView(
               shrinkWrap: true,
               children: [
-                ..._subEntryList,
-                NoteEntry(),
+                ...subEntryList,
+                NoteEntry(
+                  controller: _noteController,
+                ),
               ],
             ),
           ],

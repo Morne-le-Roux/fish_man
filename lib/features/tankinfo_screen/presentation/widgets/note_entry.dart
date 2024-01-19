@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class NoteEntry extends StatelessWidget {
-  NoteEntry({super.key});
+  const NoteEntry({super.key, required this.controller});
 
-  final TextEditingController _controller = TextEditingController();
-
-  String get value => _controller.text;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,7 @@ class NoteEntry extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             TextField(
-              controller: _controller,
+              controller: controller,
               maxLines: 10,
               decoration: const InputDecoration(border: InputBorder.none),
               scrollPadding: EdgeInsets.only(

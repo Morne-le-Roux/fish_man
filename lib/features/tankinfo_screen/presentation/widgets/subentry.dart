@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class Subentry extends StatefulWidget {
-  Subentry({super.key, required this.shortName, required this.fullName});
+  const Subentry(
+      {super.key,
+      required this.shortName,
+      required this.fullName,
+      required this.controller});
 
   final String shortName;
   final String fullName;
-  String? value;
+  final TextEditingController controller;
 
   @override
   State<Subentry> createState() => _SubentryState();
 }
 
 class _SubentryState extends State<Subentry> {
-  final TextEditingController _controller = TextEditingController();
-
   bool _active = false;
 
   @override
@@ -72,17 +74,16 @@ class _SubentryState extends State<Subentry> {
             child: TextField(
               //SETS COLOR OF TEXT, BEING ACTIVE OR INACTIVE
               onChanged: (value) {
-                value = _controller.text;
                 setState(() {
-                  if (_controller.text == "") {
+                  if (widget.controller.text == "") {
                     _active = false;
                   }
-                  if (_controller.text != "") {
+                  if (widget.controller.text != "") {
                     _active = true;
                   }
                 });
               },
-              controller: _controller,
+              controller: widget.controller,
               decoration: const InputDecoration(border: InputBorder.none),
             ),
           ),
