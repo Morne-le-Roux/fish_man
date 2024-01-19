@@ -17,8 +17,13 @@ class TankInfoScreen extends StatelessWidget {
       //Floating Action Button
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const NewEntryScreen()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => NewEntryScreen(
+                        tankID: tankID,
+                        tankName: tankName,
+                      )));
         },
         child: const Icon(Icons.add_rounded),
       ),

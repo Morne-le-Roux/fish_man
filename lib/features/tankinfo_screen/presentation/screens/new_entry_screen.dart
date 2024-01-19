@@ -3,7 +3,11 @@ import 'package:fish_man/features/tankinfo_screen/presentation/widgets/subentry.
 import 'package:flutter/material.dart';
 
 class NewEntryScreen extends StatefulWidget {
-  const NewEntryScreen({super.key});
+  const NewEntryScreen(
+      {super.key, required this.tankID, required this.tankName});
+
+  final int tankID;
+  final String tankName;
 
   @override
   State<NewEntryScreen> createState() => _NewEntryScreenState();
@@ -38,7 +42,7 @@ class _NewEntryScreenState extends State<NewEntryScreen> {
           }),
       appBar: AppBar(
         //TODO: Add tank name to appBar.
-        title: const Text("New Entry for 'Tank Name'"),
+        title: Text("New Entry for ${widget.tankName}"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -46,7 +50,10 @@ class _NewEntryScreenState extends State<NewEntryScreen> {
             //subentries
             ListView(
               shrinkWrap: true,
-              children: _subEntryList,
+              children: [
+                ..._subEntryList,
+                NoteEntry(),
+              ],
             ),
           ],
         ),
