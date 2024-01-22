@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:fish_man/features/tankinfo_screen/presentation/widgets/note_entry.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/widgets/subentry.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +75,6 @@ class _NewEntryScreenState extends State<NewEntryScreen> {
             print(data);
           }),
       appBar: AppBar(
-        //TODO: Add tank name to appBar.
         title: Text("New Entry for ${widget.tankName}"),
       ),
       body: SingleChildScrollView(
