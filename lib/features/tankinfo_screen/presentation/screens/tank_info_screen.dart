@@ -1,4 +1,5 @@
 import 'package:fish_man/features/tankinfo_screen/data/tank_entries_database.dart';
+import 'package:fish_man/features/tankinfo_screen/models/tank_entry.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/screens/new_entry_screen.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/widgets/entry.dart';
 
@@ -13,6 +14,7 @@ class TankInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List listOfEntries = [];
     return Scaffold(
       //Floating Action Button
       floatingActionButton: FloatingActionButton(
@@ -47,8 +49,31 @@ class TankInfoScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: ListView(
-          children: const [],
+        child: StreamBuilder(
+          stream: TankEntriesDatabase().tankEntryStream(tankID: tankID),
+          builder: (context, snapshot) {
+            //clear list of tanks first
+            listOfEntries = [];
+            //if there is not data yet, show a loading screen
+            //TODO: update to match loading screen theme
+            if (!snapshot.hasData) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            for (var entry in snapshot.data) {
+              print(entry);
+              listOfEntries.add(Entry(data: entry));
+            }
+
+            return ListView.builder(
+              itemCount: listOfEntries.length,
+              itemBuilder: (BuildContext context, int index) {
+                return listOfEntries[index];
+              },
+            );
+          },
         ),
       ),
     );

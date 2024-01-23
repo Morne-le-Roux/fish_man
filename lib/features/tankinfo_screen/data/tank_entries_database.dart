@@ -9,6 +9,12 @@ class TankEntriesDatabase {
     return data;
   }
 
+  Stream tankEntryStream({required tankID}) {
+    return _supabase
+        .from("tankEntries")
+        .stream(primaryKey: ["id"]).eq("id", tankID);
+  }
+
   sendTankEntry({required data}) async {
     await _supabase.from("tankEntries").insert(data);
   }

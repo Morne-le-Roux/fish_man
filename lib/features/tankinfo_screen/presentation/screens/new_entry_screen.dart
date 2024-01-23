@@ -120,9 +120,8 @@ class _NewEntryScreenState extends State<NewEntryScreen> {
               data["note"] = _noteController.text;
             }
 
-            print(data);
-
             _tankDB.sendTankEntry(data: data);
+            Navigator.pop(context);
           }),
       appBar: AppBar(
         title: Text("New Entry for ${widget.tankName}"),
