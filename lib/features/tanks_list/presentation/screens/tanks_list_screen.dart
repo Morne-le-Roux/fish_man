@@ -59,7 +59,8 @@ class _TanksListScreenState extends State<TanksListScreen> {
             _listOfTanks.add(Tank(
                 id: tank["id"],
                 tankName: tank["tank_name"],
-                tankSize: tank["tank_size"]));
+                tankSize: tank["tank_size"],
+                tankPhotoPath: tank["tank_photo_path"]));
           }
 
           return ListView.builder(

@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import "dart:io";
 
 class TanklistDatabase {
   final _supabase = Supabase.instance.client;
@@ -19,9 +20,17 @@ class TanklistDatabase {
       "owner": owner,
       "tank_name": tankName,
       "tank_size": tankSize,
+      "tank_photo_path": "$owner/$tankName",
     });
     await _supabase.storage
         .from("tank_pictures")
         .upload("$owner/$tankName", tankPhoto);
+  }
+
+  getTankImage({required String path}) async {
+    var tankPhoto =
+        await _supabase.storage.from('tank_pictures').download(path);
+
+    return tankPhoto;
   }
 }
