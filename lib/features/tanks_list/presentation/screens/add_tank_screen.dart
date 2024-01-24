@@ -57,6 +57,23 @@ class _AddTankScreenState extends State<AddTankScreen> {
                 ),
               ),
 
+              //selects measurement to keep
+              SelectableList(
+                  items: _tankMeasurement.keys.toList(),
+                  itemBuilder: (context, value, selected, onTap) => ListTile(
+                      title: Text(value),
+                      subtitle: Text("Measure your tank in $value"),
+                      onTap: onTap),
+                  selectedValue: _selectedTankMeasurement,
+                  onItemSelected: (value) => setState(() {
+                        _tankSize = 1;
+                        _selectedTankMeasurement = value;
+                      }),
+                  onItemDeselected: (value) => setState(() {
+                        _tankSize = 1;
+                        _selectedTankMeasurement = null;
+                      })),
+
               //Tank Size Selector
               NumberPicker(
                   axis: Axis.horizontal,
@@ -75,23 +92,6 @@ class _AddTankScreenState extends State<AddTankScreen> {
                       _tankSize = value;
                     });
                   }),
-
-              //selects measurement to keep
-              SelectableList(
-                  items: _tankMeasurement.keys.toList(),
-                  itemBuilder: (context, value, selected, onTap) => ListTile(
-                      title: Text(value),
-                      subtitle: Text("Measure your tank in $value"),
-                      onTap: onTap),
-                  selectedValue: _selectedTankMeasurement,
-                  onItemSelected: (value) => setState(() {
-                        _tankSize = 1;
-                        _selectedTankMeasurement = value;
-                      }),
-                  onItemDeselected: (value) => setState(() {
-                        _tankSize = 1;
-                        _selectedTankMeasurement = null;
-                      })),
             ],
           ),
 
