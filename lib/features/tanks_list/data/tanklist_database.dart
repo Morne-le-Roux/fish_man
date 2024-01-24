@@ -13,11 +13,15 @@ class TanklistDatabase {
     required String tankName,
     required String tankSize,
     required String owner,
+    required tankPhoto,
   }) async {
     await _supabase.from("tankDatabase").insert({
       "owner": owner,
       "tank_name": tankName,
       "tank_size": tankSize,
     });
+    await _supabase.storage
+        .from("tank_pictures")
+        .upload("$owner/$tankName", tankPhoto);
   }
 }

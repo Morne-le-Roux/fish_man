@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:fish_man/core/constants.dart';
 import 'package:fish_man/features/auth/provider/current_user.dart';
 import 'package:fish_man/features/tanks_list/domain/use%20cases/tanks_data.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
 import 'package:selectable_list/selectable_list.dart';
@@ -18,6 +21,16 @@ class AddTankScreen extends StatefulWidget {
 class _AddTankScreenState extends State<AddTankScreen> {
   final TextEditingController _tankName = TextEditingController();
 
+  Future _pickImageFromGallery() async {
+    final returnedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (returnedImage == null) return;
+    setState(() {
+      _selectedPhoto = File(returnedImage.path);
+    });
+  }
+
 //default starting tank size
   int _tankSize = 1;
 
@@ -29,7 +42,12 @@ class _AddTankScreenState extends State<AddTankScreen> {
     "Inch": 200,
     "Centimeter": 1000,
   };
+
+  //Selected tankMeasurement
   String? _selectedTankMeasurement;
+
+  //SelectedPhoto
+  File? _selectedPhoto;
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +110,34 @@ class _AddTankScreenState extends State<AddTankScreen> {
                       _tankSize = value;
                     });
                   }),
+
+              //Photo Selector
+
+              InkWell(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 20, left: 8, right: 8),
+                  decoration: BoxDecoration(
+                      color: Colors.black54,
+                      borderRadius: BorderRadius.circular(20)),
+                  height: 200,
+                  width: double.infinity,
+                  child: Visibility(
+                    visible: _selectedPhoto == null,
+                    replacement: _selectedPhoto == null
+                        ? const SizedBox()
+                        : Image.file(
+                            _selectedPhoto!,
+                            fit: BoxFit.cover,
+                          ), //if no photo is selected, show text to select photo
+                    child: const Center(
+                      child: Text("Upload a photo of your tank."),
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  _pickImageFromGallery();
+                },
+              ),
             ],
           ),
 
@@ -116,7 +162,8 @@ class _AddTankScreenState extends State<AddTankScreen> {
                 TanksData().addTank(
                     owner: currentUser?.id ?? "",
                     tankName: _tankName.text,
-                    tankSize: "$_tankSize $_selectedTankMeasurement");
+                    tankSize: "$_tankSize $_selectedTankMeasurement",
+                    tankPhoto: _selectedPhoto);
                 Navigator.pop(context);
               } catch (e) {
                 ScaffoldMessenger.of(context)

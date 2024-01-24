@@ -3,14 +3,17 @@ import 'package:provider/provider.dart';
 import '../../data/tanklist_database.dart';
 
 class TanksData {
-  addTank({
-    required owner,
-    required tankName,
-    required tankSize,
-  }) {
+  addTank(
+      {required owner,
+      required tankName,
+      required tankSize,
+      required tankPhoto}) {
     try {
       TanklistDatabase().addTankToDatabase(
-          owner: owner, tankName: tankName, tankSize: tankSize);
+          owner: owner,
+          tankName: tankName,
+          tankSize: tankSize,
+          tankPhoto: tankPhoto);
     } catch (error) {
       return (error);
     }
