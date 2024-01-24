@@ -2,6 +2,7 @@ import 'package:fish_man/features/tankinfo_screen/data/tank_entries_database.dar
 import 'package:fish_man/features/tankinfo_screen/models/tank_entry.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/screens/new_entry_screen.dart';
 import 'package:fish_man/features/tankinfo_screen/presentation/widgets/entry.dart';
+import 'package:fish_man/features/tankinfo_screen/presentation/widgets/tank_banner.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -49,31 +50,40 @@ class TankInfoScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: StreamBuilder(
-          stream: TankEntriesDatabase().tankEntryStream(tankID: tankID),
-          builder: (context, snapshot) {
-            //clear list of tanks first
-            listOfEntries = [];
-            //if there is not data yet, show a loading screen
-            //TODO: update to match loading screen theme
-            if (!snapshot.hasData) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+        child: Column(
+          children: [
+            TankBanner(
+              tankName: tankName,
+            ),
+            Flexible(
+              child: StreamBuilder(
+                stream: TankEntriesDatabase().tankEntryStream(tankID: tankID),
+                builder: (context, snapshot) {
+                  //clear list of tanks first
+                  listOfEntries = [];
+                  //if there is not data yet, show a loading screen
+                  //TODO: update to match loading screen theme
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
 
-            for (var entry in snapshot.data) {
-              print(entry);
-              listOfEntries.add(Entry(data: entry));
-            }
+                  for (var entry in snapshot.data) {
+                    print(entry);
+                    listOfEntries.add(Entry(data: entry));
+                  }
 
-            return ListView.builder(
-              itemCount: listOfEntries.length,
-              itemBuilder: (BuildContext context, int index) {
-                return listOfEntries[index];
-              },
-            );
-          },
+                  return ListView.builder(
+                    itemCount: listOfEntries.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return listOfEntries[index];
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
