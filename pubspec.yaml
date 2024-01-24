@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^6.1.0
+  image_picker: ^1.0.7
   numberpicker: ^2.1.2
   provider: ^6.1.1
   selectable_list: ^0.1.1
