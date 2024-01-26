@@ -28,9 +28,9 @@ class TanklistDatabase {
   }
 
   getTankImage({required String path}) async {
-    var tankPhoto =
-        await _supabase.storage.from('tank_pictures').download(path);
+    var response = await _supabase.storage.from('tank_pictures').download(path);
 
+    var tankPhoto = File.fromRawPath(response);
     return tankPhoto;
   }
 }

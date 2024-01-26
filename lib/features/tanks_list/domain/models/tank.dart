@@ -15,8 +15,5 @@ class Tank {
     required this.tankSize,
     this.occupants,
     required this.tankPhotoPath,
-  }) {
-    TanklistDatabase tankDB = TanklistDatabase();
-    tankPhoto = tankDB.getTankImage(path: tankPhotoPath);
-  }
+  });
 }
